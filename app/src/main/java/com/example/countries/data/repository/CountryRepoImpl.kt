@@ -20,6 +20,8 @@ class CountryRepoImpl @Inject constructor(
     private val localDB: LocalDB
 ) : CountryRepo {
 
+    //this stateFlow is always up to date with countries data in our local DB
+    // wihch is updated after every countries response which allow us to show most recent data in offline mode
     override val countries: StateFlow<List<CountryDto>> =  localDB
         .countriesDao()
         .getAll()
@@ -36,7 +38,7 @@ class CountryRepoImpl @Inject constructor(
         }
 
     }
-
+    //retrieve the countries data and update the local DB
     private suspend fun getCoutries() {
         val founderListType = object : TypeToken<ArrayList<CountryDto>>() {}.type
         val jsonObjectFromURL = getStringFromURL(COUNTRIES_URL);

@@ -45,12 +45,12 @@ class CoutriesVmTest {
     }
 
     @Test
-    fun `Initial state - Loadin`() = runTest{
+    fun `Initial state - Loading`() = runTest{
        assert( uut.state.value is CountriesState.Loading)
     }
 
     @Test
-    fun `Initial state - success ater loadi`() = runTest{
+    fun `Initial state - success after loading`() = runTest{
         val states = mutableListOf<CountriesState>()
 
         val collectJob = launch(UnconfinedTestDispatcher()) {
