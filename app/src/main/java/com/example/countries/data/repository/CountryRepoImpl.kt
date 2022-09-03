@@ -47,6 +47,7 @@ class CountryRepoImpl @Inject constructor(
         localDB.countriesDao().addAll(list)
     }
 
+    //get called olly if not found in our local DB
     private suspend fun getCountry(id:String): CountryDto {
         val founderListType = object : TypeToken<ArrayList<CountryDto>>() {}.type
         val jsonObjectFromURL = getStringFromURL("$BASE_URL/v3.1/alpha/$id")
